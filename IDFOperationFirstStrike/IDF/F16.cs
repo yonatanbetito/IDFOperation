@@ -11,15 +11,4 @@ public class F16 : Strike
         bombType = 1;
         affectiveTarget = "buildings";
     }
-
-public void PrintDetails()
-    {
-        Console.WriteLine($"F16 Details:");
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"Fuel: {Fuel}");
-        Console.WriteLine($"Bomb Type: {bombType}");
-        Console.WriteLine($"Affective Target: {affectiveTarget}");
-        Console.WriteLine($"Operated By Pilot: {operatedByPilot}");
-        Console.WriteLine($"Number Of Bombs: {numberOfBombs}");
-    }
 }
