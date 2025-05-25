@@ -35,4 +35,25 @@ public class AMAN
             Console.WriteLine("No reports available.");
         }
     }
+    
+    //פונקציה שמחשבת את הטירוריסט המסוכן ביותר עפ ניקוד
+    public Terrorist GetTopTarget()
+    {
+        Terrorist mostDangerous = null;
+        int highestScore = -1;
+
+        foreach (Terrorist t in terrorists)
+        {
+            if (t.getstatus() == true)
+            {
+                int score = t.GetThreatScore();
+                if (score > highestScore)
+                {
+                    highestScore = score;
+                    mostDangerous = t;
+                }
+            }
+        }
+        return mostDangerous;
+    }
 }
