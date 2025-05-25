@@ -23,6 +23,7 @@ namespace IDFOperationFirstStrike
                 new F16(),
                 new Drones(),
                 new Airtillery()
+                
             };
         }
     }
