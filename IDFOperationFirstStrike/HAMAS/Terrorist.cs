@@ -1,6 +1,6 @@
 namespace IDFOperationFirstStrike.HAMAS;
 
-internal class Terrorist
+public class Terrorist
 {
     //רשימת ערכים שהטרוריס מכיל
     protected string Name;
