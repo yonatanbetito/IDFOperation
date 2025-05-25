@@ -18,7 +18,7 @@ public class AMAN
     {
         intelMessages.Add(NewMas);
     }
-    
+    //פונקציה שמחשבת את הטירוריסט המסוכן ביותר עפ כמות דיווחים
     public void PrintMostReportedTerrorist()
     {
         var most = intelMessages
@@ -55,5 +55,24 @@ public class AMAN
             }
         }
         return mostDangerous;
+    }
+    
+     //הדפסת דיווח האחרון לפי מחבל
+    public ReportMessage GetLatestReportFor(Terrorist t)
+    {
+        ReportMessage latest = null;
+
+        foreach (ReportMessage msg in intelMessages)
+        {
+            if (msg.Target == t)
+            {
+                if (latest == null || msg.TimeStamp > latest.TimeStamp)
+                {
+                    latest = msg;
+                }
+            }
+        }
+
+        return latest;
     }
 }
