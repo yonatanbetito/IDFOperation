@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using IDFOperationFirstStrike.HAMAS;
 using IDFOperationFirstStrike.AMAN;
 using IDFOperationFirstStrike.IDF;
-using IDFOperationFirstStrike.ConsoleApp;
 namespace IDFOperationFirstStrike
 {
     class Program
@@ -28,7 +27,8 @@ namespace IDFOperationFirstStrike
 
             Console.Write("Enter officer name: ");
             string officerName = Console.ReadLine();
-            AMAN aman = new AMAN(enemies);
+
+            AMAN.AMAN aman = new AMAN.AMAN(enemies);
             CommanderConsole console = new CommanderConsole(aman, aircrafts, officerName);
             console.Run();
         }
