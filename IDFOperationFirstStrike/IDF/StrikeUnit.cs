@@ -1,17 +1,23 @@
 namespace IDFOperationFirstStrike.IDF;
 
-public class StrikeUnit
+public abstract class StrikeUnit
 {
-    protected string name;
+    protected string Name;
+    protected string Fuel;
+    protected bool operatedByPilot;
     protected int numberOfBombs;
 
-    public string GetName()
+    protected StrikeUnit(string name, string fuel, bool operatedByPilot, int numberOfBombs)
     {
-        return name;
+        Name = name;
+        Fuel = fuel;
+        this.operatedByPilot = operatedByPilot;
+        this.numberOfBombs = numberOfBombs;
     }
-
-    public int GetRemainingStrikes()
-    {
-        return numberOfBombs;
-    }
+    
+    
+    
+    
+    
+    
 }

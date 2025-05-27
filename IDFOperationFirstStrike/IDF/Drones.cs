@@ -1,6 +1,6 @@
 namespace IDFOperationFirstStrike.IDF;
 
-public class Drones : Strike
+public class Drones : StrikeUnit
 
 {
     protected double bombType;

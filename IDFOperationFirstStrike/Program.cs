@@ -18,19 +18,12 @@ namespace IDFOperationFirstStrike
                 new Terrorist("Abu Ibrahim", 1, true)
             };
 
-            List<Strike> aircrafts = new List<Strike>
+            List<StrikeUnit> aircrafts = new List<StrikeUnit>
             {
                 new F16(),
                 new Drones(),
                 new Airtillery()
             };
-
-            Console.Write("Enter officer name: ");
-            string officerName = Console.ReadLine();
-
-            AMAN.AMAN aman = new AMAN.AMAN(enemies);
-            CommanderConsole console = new CommanderConsole(aman, aircrafts, officerName);
-            console.Run();
         }
     }
 }

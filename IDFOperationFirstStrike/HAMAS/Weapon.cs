@@ -1,6 +1,6 @@
 namespace IDFOperationFirstStrike.HAMAS;
 
-public class Weapon : IWeapon
+public class Weapon
 {
     protected string TypeWeapon;
     protected int ValumeWeapon;

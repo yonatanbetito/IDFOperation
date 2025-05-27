@@ -1,6 +1,6 @@
 namespace IDFOperationFirstStrike.IDF;
 
-public class Airtillery: Strike
+public class Airtillery: StrikeUnit
 {
     protected string bombType;
     protected string affectiveTarget;
