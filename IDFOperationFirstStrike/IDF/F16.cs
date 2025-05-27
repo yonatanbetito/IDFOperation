@@ -1,6 +1,6 @@
 namespace IDFOperationFirstStrike.IDF;
 
-public class F16 : Strike
+public class F16 : StrikeUnit
 
 {
     private int bombType;
