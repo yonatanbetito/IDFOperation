@@ -1,29 +1,114 @@
-﻿using System;
-using System.Collections.Generic;
-using IDFOperationFirstStrike.HAMAS;
-using IDFOperationFirstStrike.AMAN;
+﻿using IDFOperationFirstStrike.HAMAS;
 using IDFOperationFirstStrike.IDF;
+using IDFOperationFirstStrike.AMAN;
 namespace IDFOperationFirstStrike
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            List<Terrorist> enemies = new List<Terrorist>
-            {
-                new Terrorist("Abu Jihad", 5, true),
-                new Terrorist("Abu Amar", 4, true),
-                new Terrorist("Abu Nidal", 3, true),
-                new Terrorist("Abu Qassam", 2, true),
-                new Terrorist("Abu Ibrahim", 1, true)
-            };
+            // יצירת אובייקטים
+            Hamas hamas = new Hamas("Yahya Sinwar");
+            Aman intel = new Aman();
+            Idf idf = new Idf("Herzi Halevi");
 
-            List<StrikeUnit> aircrafts = new List<StrikeUnit>
+            // יצירת טרוריסטים עם נשקים
+            hamas.Terrorists.Add(new Terrorist("Ahmad", 3, true, new List<Weapon> { new Weapon("Knife", 1), new Weapon("Gun", 2) }));
+            hamas.Terrorists.Add(new Terrorist("Muhamad", 5, true, new List<Weapon> { new Weapon("AK47", 3), new Weapon("Gun", 2) }));
+            hamas.Terrorists.Add(new Terrorist("Ali", 4, true, new List<Weapon> { new Weapon("M16", 3) }));
+            hamas.Terrorists.Add(new Terrorist("Samir", 2, true, new List<Weapon> { new Weapon("Knife", 1) }));
+            hamas.Terrorists.Add(new Terrorist("ZAide", 1, true, new List<Weapon> { new Weapon("Gun", 2), new Weapon("AK47", 3) }));
+
+            // יצירת דיווחים אקראיים
+            intel.GenerateIntel(hamas.Terrorists);
+
+            int choice = -1;
+            while (choice != 0)
             {
-                new F16(),
-                new Drones(),
-                new Airtillery()
-            };
+                Console.WriteLine("Manu");
+                Console.WriteLine("1. Who received the most reports");
+                Console.WriteLine("2. Strike availability bombs and fuel");
+                Console.WriteLine("3. Most dangerous terrorist");
+                Console.WriteLine("4. Executing strike");
+                Console.WriteLine("0. Exit");
+                Console.Write("Select an action: ");
+                choice = int.Parse(Console.ReadLine());
+
+                if (choice == 1)
+                {
+                    string name = intel.PrintMostReportedTerrorist();
+                    Console.WriteLine("The terrorist with the most reports - " + name);
+                }
+                else if (choice == 2)
+                {
+                    Console.WriteLine("Strike availability: ");
+                    idf.ShowStrikeAvailability();
+                }
+                else if (choice == 3)
+                {
+                    Terrorist t = hamas.getMostDangerous();
+                    ReportMessage latest = intel.getLatestReport(t.getName());
+                    Console.WriteLine("The most dangerous terrorist:");
+                    Console.WriteLine("Name: " + t.getName());
+                    Console.WriteLine("Rank: " + t.getRank());
+                    Console.WriteLine("Weapon:");
+                    foreach (Weapon w in t.getWeapons())
+                    {
+                        Console.WriteLine("- " + w.getTypeWeapon());
+                    }
+                    Console.WriteLine("Quality Score: " + t.GetThreatScore());
+                    Console.WriteLine("Last location:: " + latest.Location);
+                }
+                else if (choice == 4)
+                {
+                    Terrorist target = hamas.getMostDangerous();
+                    ReportMessage latest = intel.getLatestReport(target.getName());
+                    Console.WriteLine("Launching strike on: " + target.getName());
+                    Console.WriteLine("location: " + latest.Location);
+
+                    StrikeUnit unit = null;
+                    foreach (StrikeUnit s in idf.StrikeUnits)
+                    {
+                        if (latest.Location == "home" && s.EffectiveAgainst.Contains("buildings"))
+                        {
+                            unit = s;
+                            break;
+                        }
+                        else if (latest.Location == "car" && s.EffectiveAgainst.Contains("vehicles"))
+                        {
+                            unit = s;
+                            break;
+                        }
+                        else if (latest.Location == "outside" && s.EffectiveAgainst.Contains("open"))
+                        {
+                            unit = s;
+                            break;
+                        }
+                    }
+
+                    if (unit != null && unit.numberOfBombs > 0)
+                    {
+                        unit.Strike(target.getName());
+                        Console.WriteLine("The strike was carried by:" + unit.Name);
+                        Console.WriteLine("Name of commanding: " + idf.Commander);
+                        Console.WriteLine("Time: " + DateTime.Now);
+                        Console.WriteLine("Latest intelligence update: " + latest.Location + ", " + latest.TimeStamp);
+                        target.setstatus(false);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No strike unit available.");
+                    }
+                }
+                else if (choice == 0)
+                {
+                    Console.WriteLine("Logging out of the system.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection, please try again.");
+                }
+            }
         }
     }
 }

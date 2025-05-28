@@ -1,24 +1,35 @@
-using System;
-using IDFOperationFirstStrike.HAMAS;
-
 namespace IDFOperationFirstStrike.AMAN
 {
-    public class ReportMessage
+    internal class ReportMessage
     {
-        public Terrorist Target { get; }
-        public string Location { get; }
-        public DateTime TimeStamp { get; }
+        public string TerroristName;
+        public string Location;
+        public DateTime TimeStamp;
 
-        public ReportMessage(Terrorist target, string location, DateTime timeStamp)
+        public ReportMessage(string name,string location)
         {
-            Target = target;
+            TerroristName = name;
             Location = location;
-            TimeStamp = timeStamp;
+            TimeStamp = DateTime.Now;
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //===========================================
+        /*
         public override string ToString()
         {
             return $"Target: {Target.getName()}, Location: {Location}, Time: {TimeStamp}";
         }
+        */
     }
 }

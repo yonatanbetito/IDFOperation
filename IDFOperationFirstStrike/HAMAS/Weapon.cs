@@ -10,24 +10,12 @@ public class Weapon
         TypeWeapon = typeWeapon;
         ValumeWeapon = valumeWeapon;
     }
-
-    public string setTypeWeapon(string newTypeWepons)
-    {
-        TypeWeapon = newTypeWepons;
-        return TypeWeapon;
-    }
-
+    
     public string getTypeWeapon()
     {
         return TypeWeapon;
     }
-
-    public int setVolumeWeapon(int newVolumeWeapon)
-    {
-        ValumeWeapon = newVolumeWeapon;
-        return ValumeWeapon;
-    }
-
+    
     public int getVolumeWeapon()
     {
         return ValumeWeapon;
