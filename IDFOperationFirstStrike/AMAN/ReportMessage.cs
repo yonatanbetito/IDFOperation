@@ -12,24 +12,5 @@ namespace IDFOperationFirstStrike.AMAN
             Location = location;
             TimeStamp = DateTime.Now;
         }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //===========================================
-        /*
-        public override string ToString()
-        {
-            return $"Target: {Target.getName()}, Location: {Location}, Time: {TimeStamp}";
-        }
-        */
     }
 }

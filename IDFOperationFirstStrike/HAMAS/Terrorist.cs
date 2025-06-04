@@ -9,11 +9,10 @@ public class Terrorist
     protected List<Weapon> Weapons = new List<Weapon>();
 
     //בנאי של טרוריסט אחד עם שם דרגה וסטטוס
-    public Terrorist(string name, int rank, bool status,List<Weapon> weapons)
+    public Terrorist(string name, int rank,List<Weapon> weapons)
     {
         Name = name;
         Rank = rank;
-        Status = status;
         Weapons = weapons;
     }
 

@@ -18,16 +18,26 @@ internal class Hamas
     // מחזירה את הטרוריסט הכי מסוכן לפי ניקוד
     public Terrorist getMostDangerous()
     {
+        
         int max = 0;
         Terrorist danger = null;
         foreach (Terrorist t in Terrorists)
         {
-            int score = t.GetThreatScore();
-            if (score > max)
+            if (t.getstatus())
             {
-                max = score;
-                danger = t;
+                int score = t.GetThreatScore();
+                if (score > max)
+                {
+                    max = score;
+                    danger = t;
+                }
+
             }
+        }
+
+        if (danger is null)
+        {
+            Console.WriteLine("no more Terrorist");
         }
         return danger;
     }

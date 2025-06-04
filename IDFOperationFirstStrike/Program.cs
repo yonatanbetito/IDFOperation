@@ -6,18 +6,22 @@ namespace IDFOperationFirstStrike
     internal class Program
     {
         static void Main(string[] args)
+
+
         {
+            //GeminiSimple.Run();
+            
             // יצירת אובייקטים
             Hamas hamas = new Hamas("Yahya Sinwar");
             Aman intel = new Aman();
             Idf idf = new Idf("Herzi Halevi");
 
             // יצירת טרוריסטים עם נשקים
-            hamas.Terrorists.Add(new Terrorist("Ahmad", 3, true, new List<Weapon> { new Weapon("Knife", 1), new Weapon("Gun", 2) }));
-            hamas.Terrorists.Add(new Terrorist("Muhamad", 5, true, new List<Weapon> { new Weapon("AK47", 3), new Weapon("Gun", 2) }));
-            hamas.Terrorists.Add(new Terrorist("Ali", 4, true, new List<Weapon> { new Weapon("M16", 3) }));
-            hamas.Terrorists.Add(new Terrorist("Samir", 2, true, new List<Weapon> { new Weapon("Knife", 1) }));
-            hamas.Terrorists.Add(new Terrorist("ZAide", 1, true, new List<Weapon> { new Weapon("Gun", 2), new Weapon("AK47", 3) }));
+            hamas.Terrorists.Add(new Terrorist("Ahmad", 3, new List<Weapon> { new Weapon("Knife", 1), new Weapon("Gun", 2) }));
+            hamas.Terrorists.Add(new Terrorist("Muhamad", 5, new List<Weapon> { new Weapon("AK47", 3), new Weapon("Gun", 2) }));
+            hamas.Terrorists.Add(new Terrorist("Ali", 4, new List<Weapon> { new Weapon("M16", 3) }));
+            hamas.Terrorists.Add(new Terrorist("Samir", 2, new List<Weapon> { new Weapon("Knife", 1) }));
+            hamas.Terrorists.Add(new Terrorist("ZAide", 1, new List<Weapon> { new Weapon("Gun", 2), new Weapon("AK47", 3) }));
 
             // יצירת דיווחים אקראיים
             intel.GenerateIntel(hamas.Terrorists);
@@ -25,13 +29,14 @@ namespace IDFOperationFirstStrike
             int choice = -1;
             while (choice != 0)
             {
-                Console.WriteLine("Manu");
-                Console.WriteLine("1. Who received the most reports");
-                Console.WriteLine("2. Strike availability bombs and fuel");
-                Console.WriteLine("3. Most dangerous terrorist");
-                Console.WriteLine("4. Executing strike");
-                Console.WriteLine("0. Exit");
-                Console.Write("Select an action: ");
+                Console.WriteLine(@"
+                            Manu
+                1. Who received the most reports
+                2. Strike availability bombs and fuel
+                3. Most dangerous terrorist
+                4. Executing strike
+                0. Exit
+                Select an action: ");
                 choice = int.Parse(Console.ReadLine());
 
                 if (choice == 1)
@@ -63,8 +68,8 @@ namespace IDFOperationFirstStrike
                 {
                     Terrorist target = hamas.getMostDangerous();
                     ReportMessage latest = intel.getLatestReport(target.getName());
-                    Console.WriteLine("Launching strike on: " + target.getName());
-                    Console.WriteLine("location: " + latest.Location);
+                    Console.WriteLine($@"Launching strike on: {target.getName()}
+                    location:{latest.Location}");
 
                     StrikeUnit unit = null;
                     foreach (StrikeUnit s in idf.StrikeUnits)
@@ -89,10 +94,10 @@ namespace IDFOperationFirstStrike
                     if (unit != null && unit.numberOfBombs > 0)
                     {
                         unit.Strike(target.getName());
-                        Console.WriteLine("The strike was carried by:" + unit.Name);
-                        Console.WriteLine("Name of commanding: " + idf.Commander);
-                        Console.WriteLine("Time: " + DateTime.Now);
-                        Console.WriteLine("Latest intelligence update: " + latest.Location + ", " + latest.TimeStamp);
+                        Console.WriteLine($@"The strike was carried by:{unit.Name}
+                        Name of commanding: {idf.Commander}
+                        Time attack :{DateTime.Now}
+                        Latest intelligence update: {latest.Location} ,{latest.TimeStamp}");
                         target.setstatus(false);
                     }
                     else
