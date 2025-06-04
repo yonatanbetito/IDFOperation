@@ -12,7 +12,7 @@ internal abstract class StrikeUnit
     public abstract void Strike(string target);
     
 }
-
+    //יורשים ממחלקה אבססטרקטית שיצרתי בהתחלה
     internal class Hermes : StrikeUnit
     {
         public Hermes()

@@ -21,7 +21,7 @@ internal class Aman
             intelMessages.Add(new ReportMessage(t.getName(), location));
         }
     }
-
+    //הוספה ידנית של דיווח
     public void AddReport(ReportMessage NewMas)
     {
         intelMessages.Add(NewMas);
@@ -77,18 +77,3 @@ internal class Aman
         return latest;
     }
 }
-
-
-
-
-
-
-
-
-
-
-//===================
-    /*
-
-
-*/
