@@ -4,9 +4,9 @@ namespace IDFOperationFirstStrike.AMAN;
 
 internal class Aman
 {
-    //רשימה שמכילה את כל הדיווחים
-    public List<ReportMessage> intelMessages = new List<ReportMessage>();
-
+    //רשימה שמכילה את כל הדיווחים (שהם פרטיים)
+    public List<ReportMessage> IntelMessages { get; private set; }= new List<ReportMessage>();
+    
     // מייצרת דיווחים אקראיים על טרוריסטים
     public void GenerateIntel(List<Terrorist> terrorists)
     {
@@ -18,34 +18,34 @@ internal class Aman
             int index = rnd.Next(terrorists.Count);
             Terrorist t = terrorists[index];
             string location = locations[rnd.Next(locations.Length)];
-            intelMessages.Add(new ReportMessage(t.getName(), location));
+            IntelMessages.Add(new ReportMessage(t.getName(), location));
         }
     }
     //הוספה ידנית של דיווח
     public void AddReport(ReportMessage NewMas)
     {
-        intelMessages.Add(NewMas);
+        IntelMessages.Add(NewMas);
     }
 
     //פונקציה שמחשבת את הטירוריסט המסוכן ביותר עפ כמות דיווחים
     public string PrintMostReportedTerrorist()
     {
-        Dictionary<string, int> count = new Dictionary<string, int>();
-        foreach (ReportMessage msg in intelMessages)
+        Dictionary<string, int> countmessage = new Dictionary<string, int>();
+        foreach (ReportMessage msg in IntelMessages)
         {
-            if (count.ContainsKey(msg.TerroristName))
+            if (countmessage.ContainsKey(msg.TerroristName))
             {
-                count[msg.TerroristName]++;
+                countmessage[msg.TerroristName]++;
             }
             else
             {
-                count[msg.TerroristName] = 1;
+                countmessage[msg.TerroristName] = 1;
             }
         }
 
         int max = 0;
         string name = "";
-        foreach (var item in count)
+        foreach (var item in countmessage)
         {
             if (item.Value > max)
             {
@@ -63,7 +63,7 @@ internal class Aman
     {
         ReportMessage latest = null;
 
-        foreach (ReportMessage msg in intelMessages)
+        foreach (ReportMessage msg in IntelMessages)
         {
             if (msg.TerroristName == name)
             {

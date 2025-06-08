@@ -2,7 +2,8 @@ namespace IDFOperationFirstStrike.HAMAS;
 
 internal class Hamas
 {
-    protected DateTime DateFormation;
+    public DateTime DateFormation { get; set; }
+    //protected DateTime DateFormation;
     protected string CurrentComander;
     protected internal List<Terrorist> Terrorists;
 
